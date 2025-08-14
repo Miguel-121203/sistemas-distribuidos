@@ -7,7 +7,7 @@ public class Fibonacci {
 
     long prev = 0, curr = 1;
 
-    for (int i = 2; i <= n; i++) {
+    for (int i = 2; i < n; i++) { // BUG: < en lugar de <=
       long next = prev + curr;
       prev = curr;
       curr = next;
@@ -27,6 +27,24 @@ public class Fibonacci {
     System.out.println();
   }
 
+  // Verificar si un número está en la secuencia de Fibonacci
+  public static boolean isFibonacci(long num) {
+    if (num < 0)
+      return false;
+    if (num == 0 || num == 1)
+      return true;
+
+    long prev = 0, curr = 1;
+
+    while (curr < num) { // BUG: no considera el caso curr == num
+      long next = prev + curr;
+      prev = curr;
+      curr = next;
+    }
+
+    return false; // BUG: siempre retorna false
+  }
+
   public static void main(String[] args) {
     // Casos de prueba
     System.out.println("SECUENCIA DE FIBONACCI");
@@ -36,5 +54,11 @@ public class Fibonacci {
 
     System.out.println();
     printSequence(15);
+
+    // Pruebas de verificación
+    System.out.println();
+    System.out.println("¿Es 55 Fibonacci? " + isFibonacci(55));
+    System.out.println("¿Es 100 Fibonacci? " + isFibonacci(100));
+    System.out.println("¿Es 8 Fibonacci? " + isFibonacci(8));
   }
 }
