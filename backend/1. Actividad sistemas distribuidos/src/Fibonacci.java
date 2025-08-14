@@ -7,7 +7,7 @@ public class Fibonacci {
 
     long prev = 0, curr = 1;
 
-    for (int i = 2; i < n; i++) { // BUG: < en lugar de <=
+    for (int i = 2; i <= n; i++) { // CORREGIDO: <= en lugar de <
       long next = prev + curr;
       prev = curr;
       curr = next;
@@ -36,13 +36,13 @@ public class Fibonacci {
 
     long prev = 0, curr = 1;
 
-    while (curr < num) { // BUG: no considera el caso curr == num
+    while (curr < num) { // Condición correcta: seguir mientras curr < num
       long next = prev + curr;
       prev = curr;
       curr = next;
     }
 
-    return false; // BUG: siempre retorna false
+    return curr == num; // CORREGIDO: retorna true si curr == num
   }
 
   public static void main(String[] args) {
